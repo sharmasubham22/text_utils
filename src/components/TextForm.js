@@ -22,6 +22,7 @@ export default function TextForm(props) {
       var text = document.getElementById("myBox");
       text.select();
       navigator.clipboard.writeText(text.value);
+      props.showAlert("Copied to clipboard", "success")
    };
 
    const handleSpace = ()=>{
@@ -35,8 +36,11 @@ export default function TextForm(props) {
  
   return (
     <>
-      <div className="container">
-        <div className="form-group">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#0c0d21" }}
+      >
+        <div className="form-group my-3">
           <h1>{props.heading} </h1>
           <textarea
             className="form-control"
@@ -45,6 +49,10 @@ export default function TextForm(props) {
             id="myBox"
             rows="8"
             placeholder="Enter your text here"
+            style={{
+              backgroundColor: props.mode === "dark" ? "#0c0d21" : "white",
+              color: props.mode === "dark" ? "white" : "#0c0d21",
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpCase}>
@@ -63,14 +71,19 @@ export default function TextForm(props) {
           Clear
         </button>
       </div>
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
         <h2>Your text summary</h2>
         <p>
           {text.split(" ").length} words, {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} minutes to read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>
+          {text.length > 0 ? text : "Enter some text above to preview it here"}
+        </p>
       </div>
     </>
   );

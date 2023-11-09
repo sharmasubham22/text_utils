@@ -13,6 +13,28 @@ export default function TextForm(props) {
      let newText = text.toLowerCase();
      setText(newText);
    };
+
+   const handleSenCase = () => {
+    let newText = text.toLowerCase().split(". ");
+    let sentenceCased = newText.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+    setText(sentenceCased.join('. '));
+   }
+
+   const handleSpChars = () => {
+    let newText = text.replace(/[^a-zA-Z0-9 ]/g, "");
+    setText(newText);
+    props.showAlert("Special characters removed", "success");
+   }
+
+   const handleExText = () => {
+    let newText = text.match(/[a-z]|[A-Z]|[.]|[ ]/g);
+    if(newText === null){
+      setText('')
+      props.showAlert("No Text found, try again", "warning");
+    } else {
+      setText(newText.join(''))
+    }
+   }
    
    const handleClear = () => {
      let newText = "";
@@ -39,7 +61,7 @@ export default function TextForm(props) {
     <>
       <div
         className="container"
-        style={{ color: props.mode === "dark" ? "white" : "#0c0d21" }}
+        style={{ color: props.mode === "dark" ? "white" : "#151517" }}
       >
         <div className="form-group my-3">
           <h1>{props.heading} </h1>
@@ -51,8 +73,8 @@ export default function TextForm(props) {
             rows="8"
             placeholder="Enter your text here"
             style={{
-              backgroundColor: props.mode === "dark" ? "#0c0d21" : "white",
-              color: props.mode === "dark" ? "white" : "#0c0d21",
+              backgroundColor: props.mode === "dark" ? "#151517" : "white",
+              color: props.mode === "dark" ? "white" : "#151517",
             }}
           ></textarea>
         </div>
@@ -73,9 +95,30 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           className="btn btn-primary mx-1 my-1"
+          onClick={handleSenCase}
+        >
+          Sentence Case
+        </button>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
           onClick={handleSpace}
         >
           Remove Extra Spaces
+        </button>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleSpChars}
+        >
+          Remove Special Characters
+        </button>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleExText}
+        >
+          Extract Text
         </button>
         <button
           disabled={text.length === 0}
@@ -114,7 +157,7 @@ export default function TextForm(props) {
         </p>
         <h2>Preview</h2>
         <p>
-          {text.length > 0 ? text : "Enter some text above to preview it here"}
+          {text.length > 0 ? text : "Nothing to preview here!!"}
         </p>
       </div>
     </>

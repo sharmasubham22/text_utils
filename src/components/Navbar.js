@@ -7,8 +7,8 @@ export default function Navbar(props) {
     <nav
       className={`navbar navbar-expand-lg navbar-${props.mode}`}
       style={{
-        backgroundColor: props.mode === "dark" ? "#080814" : "#d4d4d6",
-        color: props.mode === "dark" ? "#d4d4d6" : "#080814",
+        backgroundColor: props.mode === "dark" ? "#070708" : "#d4d4d6",
+        color: props.mode === "dark" ? "#d4d4d6" : "#070708",
       }}
     >
       <div className="container-fluid">

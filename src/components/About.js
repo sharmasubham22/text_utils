@@ -17,7 +17,7 @@ export default function About(props) {
         <div
           className="accordion-item"
           style={{
-            backgroundColor: props.mode === "dark" ? "#070708" : "white",
+            backgroundColor: props.mode === "dark" ? "#070708" : "#d4d4d6",
             color: props.mode === "dark" ? "white" : "#151517",
           }}
         >
@@ -43,18 +43,18 @@ export default function About(props) {
             className="accordion-collapse collapse show"
             aria-labelledby="headingOne"
             data-bs-parent="#accordionExample"
-            
           >
             <div className="accordion-body">
               Textutils gives you a way to analyze your text quickly and
-              efficiently. Be it word count, character count or just get a preview of the formatted text.
+              efficiently. Be it word count, character count or just get a
+              preview of the formatted text.
             </div>
           </div>
         </div>
         <div
           className="accordion-item"
           style={{
-            backgroundColor: props.mode === "dark" ? "#070708" : "white",
+            backgroundColor: props.mode === "dark" ? "#070708" : "#d4d4d6",
             color: props.mode === "dark" ? "white" : "#151517",
           }}
         >
@@ -92,7 +92,7 @@ export default function About(props) {
         <div
           className="accordion-item"
           style={{
-            backgroundColor: props.mode === "dark" ? "#070708" : "white",
+            backgroundColor: props.mode === "dark" ? "#070708" : "#d4d4d6",
             color: props.mode === "dark" ? "white" : "#151517",
           }}
         >

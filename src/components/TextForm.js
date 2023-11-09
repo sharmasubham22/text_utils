@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 export default function TextForm(props) {
+  
    const [text, setText] = useState("");
 
    const handleUpCase = () => {
@@ -55,19 +56,39 @@ export default function TextForm(props) {
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpCase}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleUpCase}
+        >
           Upper Case
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLowCase}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleLowCase}
+        >
           Lower Case
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleSpace}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleSpace}
+        >
           Remove Extra Spaces
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleCopyClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleCopyClick}
+        >
           Copy to Clipboard
         </button>
-        <button className="btn btn-danger mx-1" onClick={handleClear}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-danger mx-1 my-1"
+          onClick={handleClear}
+        >
           Clear
         </button>
       </div>
@@ -77,9 +98,20 @@ export default function TextForm(props) {
       >
         <h2>Your text summary</h2>
         <p>
-          {text.split(" ").length} words, {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words, {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          minutes to read
+        </p>
         <h2>Preview</h2>
         <p>
           {text.length > 0 ? text : "Enter some text above to preview it here"}
